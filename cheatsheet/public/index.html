@@ -9,10 +9,10 @@
     <link href="./styles.css" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="bg-gray-100 font-sans print:bg-white print:text-black"></body>
+<body class="bg-gray-100 font-sans print:bg-white print:text-black">
     <div x-data="{ scrollTo(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); } }" class="container mx-auto p-6">
         <h1 class="text-4xl font-bold text-center text-phaserViolet mb-8">Phaser.js Cheatsheet</h1>
-        
+
         <div class="sticky z-10 print:hidden top-0 bg-gray-100 py-4 mb-8">
             <div class="flex justify-center space-x-4">
                 <button @click="scrollTo('basics')" class="px-4 py-2 rounded bg-phaserBlue text-white hover:bg-phaserViolet transition">Basics</button>
@@ -26,7 +26,7 @@
                 <button @click="scrollTo('camera')" class="px-4 py-2 rounded bg-phaserBlue text-white hover:bg-phaserViolet transition">Camera</button>
             </div>
         </div>
-        
+
         <div id="basics" class="mb-12 break-inside-avoid">
             <h2 class="text-2xl font-bold text-phaserViolet mb-4">Basics</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -53,7 +53,7 @@ const game = new Phaser.Game(config);
                         <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
                         <img src="./assets/screenshots/basics.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                     </div>
-                    
+
                     <template x-if="showBasicExample">
                         <script async src="//jsfiddle.net/6kwthgpb/10/embed/js,html,result/"></script>
                     </template>
@@ -91,7 +91,7 @@ const config = {
                         <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
                         <img src="./assets/screenshots/scene.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                     </div>
-                    
+
                     <template x-if="showBasicExample">
                         <script async src="//jsfiddle.net/ProGM/nbrvcem9/4/embed/js,html,result/"></script>
                     </template>
@@ -131,7 +131,7 @@ this.scene.start('Scene2'); // "Scene2" is the key of the scene
                         <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
                         <img src="./assets/screenshots/scene-change.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                     </div>
-                    
+
                     <template x-if="showBasicExample">
                         <script async src="//jsfiddle.net/ProGM/zv4a7L98/21/embed/js,html,result/"></script>
                     </template>
@@ -161,7 +161,7 @@ create() {
                         <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
                         <img src="./assets/screenshots/sprites.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                     </div>
-                    
+
                     <template x-if="showBasicExample">
                         <script async src="//jsfiddle.net/ProGM/4osbzky2/7/embed/js,html,result/"></script>
                     </template>
@@ -181,7 +181,7 @@ update(time, delta) {
     this.logo.setRotation(this.logo.rotation + delta / 100);
     this.logo.setPosition(
     	400 + 100 * Math.cos(time / 100),
-      300 
+      300
     );
     this.logo.setScale(1 + Math.sin(time / 100) * 0.3);
 }
@@ -193,7 +193,7 @@ update(time, delta) {
                         <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
                         <img src="./assets/screenshots/sprite-positioning.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                     </div>
-                    
+
                     <template x-if="showBasicExample">
                         <script async src="//jsfiddle.net/ProGM/4osbzky2/34/embed/js,html,result/"></script>
                     </template>
@@ -224,14 +224,14 @@ create() {
                         <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
                         <img src="./assets/screenshots/text.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                     </div>
-                    
+
                     <template x-if="showBasicExample">
                         <script async src="//jsfiddle.net/ProGM/71nkpx3y/4/embed/js,html,result/"></script>
                     </template>
                 </div>
             </div>
         </div>
-        
+
         <div id="input" class="mb-12 break-inside-avoid">
             <h2 class="text-2xl font-bold text-phaserViolet mb-4">Input</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -252,7 +252,7 @@ create() {
                         <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
                         <img src="./assets/screenshots/pointer.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                     </div>
-                    
+
                     <template x-if="showBasicExample">
                         <script async src="//jsfiddle.net/ProGM/2vnsb17x/8/embed/js,html,result/"></script>
                     </template>
@@ -277,7 +277,7 @@ create() {
                         <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
                         <img src="./assets/screenshots/pointer.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                     </div>
-                    
+
                     <template x-if="showBasicExample">
                         <script async src="//jsfiddle.net/ProGM/2vnsb17x/8/embed/js,html,result/"></script>
                     </template>
@@ -311,7 +311,7 @@ update() {
                         <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
                         <img src="./assets/screenshots/input-keyboard.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                     </div>
-                    
+
                     <template x-if="showBasicExample">
                         <script async src="//jsfiddle.net/ProGM/ecdr3bsy/7/embed/js,html,result/"></script>
                     </template>
@@ -341,7 +341,7 @@ create() {
                         <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
                         <img src="./assets/screenshots/pointer.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                     </div>
-                    
+
                     <template x-if="showBasicExample">
                         <script async src="//jsfiddle.net/ProGM/2vnsb17x/8/embed/js,html,result/"></script>
                     </template>
@@ -370,7 +370,7 @@ this.barkSFX.play();
                         <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
                         <img src="./assets/screenshots/input-keyboard.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                     </div>
-                    
+
                     <template x-if="showBasicExample">
                         <script async src="//jsfiddle.net/ProGM/ecdr3bsy/7/embed/js,html,result/"></script>
                     </template>
@@ -403,7 +403,7 @@ update(time, delta) {
                         <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
                         <img src="./assets/screenshots/pointer.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                     </div>
-                    
+
                     <template x-if="showBasicExample">
                         <script async src="//jsfiddle.net/ProGM/2vnsb17x/8/embed/js,html,result/"></script>
                     </template>
@@ -440,7 +440,7 @@ create() {
                         <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
                         <img src="./assets/screenshots/input-keyboard.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                     </div>
-                    
+
                     <template x-if="showBasicExample">
                         <script async src="//jsfiddle.net/ProGM/ecdr3bsy/7/embed/js,html,result/"></script>
                     </template>

@@ -37,20 +37,18 @@ jobs:
         run: npm run build
         working-directory: ./cheatsheet
 
+      - name: Create output directory
+        run: mkdir -p dist/cheatsheet && cp src/index.html ./dist && cp -r cheatsheet/public/* dist/cheatsheet && cp ../slides/slides.pdf ./dist/slides.pdf
+        working-directory: ./cheatsheet
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
-        with:
-          # Set the subfolder for deployment
-          path: 'cheatsheet'
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './cheatsheet/public'
+          path: './cheatsheet/dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          # Set the subfolder for deployment
-          path: 'cheatsheet'
