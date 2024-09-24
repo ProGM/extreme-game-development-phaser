@@ -38,7 +38,7 @@ jobs:
         working-directory: ./cheatsheet
 
       - name: Create output directory
-        run: mkdir -p dist/cheatsheet && cp src/index.html ./dist && cp -r cheatsheet/public/* dist/cheatsheet && cp ../slides/slides.pdf ./dist/slides.pdf
+        run: mkdir -p dist/cheatsheet && cp src/index.html ./dist && cp -r ./public/* dist/cheatsheet && cp ../slides/slides.pdf ./dist/slides.pdf
         working-directory: ./cheatsheet
 
       - name: Setup Pages
