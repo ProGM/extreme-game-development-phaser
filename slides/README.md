@@ -271,8 +271,11 @@ https://labs.phaser.io/
 
 ---
 
-## XP and Video Game Industry...
-### A sad story.
+# Part 2: XP and Video Game Industry...
+
+---
+
+# A sad story.
 
 ---
 

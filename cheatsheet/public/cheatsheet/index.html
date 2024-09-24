@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phaser.js Interactive Cheatsheet</title>
+    <link href="./assets/prism.css" rel="stylesheet">
+    <script src="./assets/prism.js" defer></script>
+    <link href="../styles.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-gray-100 font-sans print:bg-white print:text-black">
+    <div x-data="{ scrollTo(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); } }" class="container mx-auto p-6">
+        <h1 class="text-4xl font-bold text-center text-phaserViolet mb-8">Phaser.js Cheatsheet</h1>
+
+        <div class="sticky z-10 print:hidden top-0 bg-gray-100 py-4 mb-8">
+            <div class="flex justify-center space-x-4">
+                <button @click="scrollTo('basics')" class="px-4 py-2 rounded bg-phaserBlue text-white hover:bg-phaserViolet transition">Basics</button>
+                <button @click="scrollTo('scenes')" class="px-4 py-2 rounded bg-phaserBlue text-white hover:bg-phaserViolet transition">Scenes</button>
+                <button @click="scrollTo('sprites')" class="px-4 py-2 rounded bg-phaserBlue text-white hover:bg-phaserViolet transition">Sprites</button>
+                <button @click="scrollTo('text')" class="px-4 py-2 rounded bg-phaserBlue text-white hover:bg-phaserViolet transition">Text</button>
+                <button @click="scrollTo('input')" class="px-4 py-2 rounded bg-phaserBlue text-white hover:bg-phaserViolet transition">Input</button>
+                <button @click="scrollTo('audio')" class="px-4 py-2 rounded bg-phaserBlue text-white hover:bg-phaserViolet transition">Audio</button>
+                <button @click="scrollTo('animation')" class="px-4 py-2 rounded bg-phaserBlue text-white hover:bg-phaserViolet transition">Animation</button>
+                <button @click="scrollTo('composition')" class="px-4 py-2 rounded bg-phaserBlue text-white hover:bg-phaserViolet transition">Composition</button>
+                <button @click="scrollTo('camera')" class="px-4 py-2 rounded bg-phaserBlue text-white hover:bg-phaserViolet transition">Camera</button>
+            </div>
+        </div>
+
+        <div id="basics" class="mb-12 break-inside-avoid">
+            <h2 class="text-2xl font-bold text-phaserViolet mb-4">Basics</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Create a Game</h3>
+                    <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+const config = {
+    type: Phaser.AUTO,
+    width: 800,
+    height: 600,
+    backgroundColor: '#ff0000', // default background color of the game
+    scene: [
+        /* ... your scenes here ... */
+    ],
+    /* ... other configuration options ... */
+};
+
+const game = new Phaser.Game(config);
+                    </code></pre>
+                </div>
+                <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                    <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                        <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                        <img src="./assets/screenshots/basics.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                    </div>
+
+                    <template x-if="showBasicExample">
+                        <script async src="//jsfiddle.net/6kwthgpb/10/embed/js,html,result/"></script>
+                    </template>
+                </div>
+            </div>
+        </div>
+
+        <div id="scenes" class="mb-12 break-inside-avoid">
+            <h2 class="text-2xl font-bold text-phaserViolet mb-4">Scenes</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Create a scene</h3>
+                    <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+class MyScene extends Phaser.Scene {
+    constructor() {
+        super({ key: 'MyScene' });
+    }
+
+    preload() { /* ... preload assets ... */ }
+    init() { /* ... initialize scene ... */ }
+    create() { /* ... create game objects ... */ }
+    update() { /* ... update game state ... */ }
+}
+
+/* ... Add it in your game configuration ... */
+const config = {
+    scene: [MyScene],
+    /* ... other configuration options ... */
+};
+                    </code></pre>
+                </div>
+                <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                    <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                        <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                        <img src="./assets/screenshots/scene.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                    </div>
+
+                    <template x-if="showBasicExample">
+                        <script async src="//jsfiddle.net/ProGM/nbrvcem9/4/embed/js,html,result/"></script>
+                    </template>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Moving between scenes</h3>
+                    <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+/* ... Define as many scenes you want ... */
+class Scene1 extends Phaser.Scene {
+    constructor() {
+        super({ key: 'Scene1' });
+    }
+}
+
+class Scene2 extends Phaser.Scene {
+    constructor() {
+        super({ key: 'Scene2' });
+    }
+}
+
+/* ... Add them in your game configuration ... */
+const config = {
+    scene: [Scene1, Scene2],
+    /* ... other configuration options ... */
+};
+
+/* ... Move between scenes ... */
+this.scene.start('Scene2'); // "Scene2" is the key of the scene
+                    </code></pre>
+                </div>
+                <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                    <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                        <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                        <img src="./assets/screenshots/scene-change.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                    </div>
+
+                    <template x-if="showBasicExample">
+                        <script async src="//jsfiddle.net/ProGM/zv4a7L98/21/embed/js,html,result/"></script>
+                    </template>
+                </div>
+            </div>
+        </div>
+
+        <div id="sprites" class="mb-12 break-inside-avoid">
+            <h2 class="text-2xl font-bold text-phaserViolet mb-4">Sprites</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Add a Sprite</h3>
+                    <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+/* ... in your scene ... */
+preload() {
+    this.load.image('logo', 'assets/logo.png');
+}
+
+create() {
+    this.add.sprite(400, 300, 'logo');
+}
+                    </code></pre>
+                </div>
+                <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                    <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                        <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                        <img src="./assets/screenshots/sprites.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                    </div>
+
+                    <template x-if="showBasicExample">
+                        <script async src="//jsfiddle.net/ProGM/4osbzky2/7/embed/js,html,result/"></script>
+                    </template>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Sprite position / rotation / scaling</h3>
+                    <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+/* ... in your scene ... */
+create() {
+    this.logo = this.add.sprite(400, 300, 'logo').setOrigin(0.5);
+}
+
+update(time, delta) {
+    /* ... rotate the sprite around the center ... */
+    this.logo.setRotation(this.logo.rotation + delta / 100);
+    this.logo.setPosition(
+    	400 + 100 * Math.cos(time / 100),
+      300
+    );
+    this.logo.setScale(1 + Math.sin(time / 100) * 0.3);
+}
+                    </code></pre>
+                </div>
+                <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                    <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                        <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                        <img src="./assets/screenshots/sprite-positioning.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                    </div>
+
+                    <template x-if="showBasicExample">
+                        <script async src="//jsfiddle.net/ProGM/4osbzky2/34/embed/js,html,result/"></script>
+                    </template>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="text" class="mb-12 break-inside-avoid">
+            <h2 class="text-2xl font-bold text-phaserViolet mb-4">Text</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Write text</h3>
+                    <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+/* ... in your scene ... */
+create() {
+    this.add.text(400, 300, 'Hello, Phaser!', {
+        fontSize: '32px',
+        color: '#000000',
+        fontFamily: 'Arial',
+    });
+}
+                    </code></pre>
+                </div>
+                <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                    <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                        <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                        <img src="./assets/screenshots/text.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                    </div>
+
+                    <template x-if="showBasicExample">
+                        <script async src="//jsfiddle.net/ProGM/71nkpx3y/4/embed/js,html,result/"></script>
+                    </template>
+                </div>
+            </div>
+        </div>
+
+        <div id="input" class="mb-12 break-inside-avoid">
+            <h2 class="text-2xl font-bold text-phaserViolet mb-4">Input</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Handle Mouse click with events</h3>
+                    <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+/* ... in your scene ... */
+create() {
+    this.input.on('pointerdown', (pointer) => {
+        console.log('Clicked at: ', pointer.x, pointer.y);
+    });
+}
+                    </code></pre>
+                </div>
+                <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                    <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                        <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                        <img src="./assets/screenshots/pointer.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                    </div>
+
+                    <template x-if="showBasicExample">
+                        <script async src="//jsfiddle.net/ProGM/2vnsb17x/8/embed/js,html,result/"></script>
+                    </template>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Mouse click on Phaser objects</h3>
+                    <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+/* ... in your scene ... */
+create() {
+    this.logo = this.add.sprite(400, 300, 'logo').setInteractive();
+    this.logo.on('pointerdown', () => {
+        console.log('Clicked on the logo');
+    });
+}
+                    </code></pre>
+                </div>
+                <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                    <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                        <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                        <img src="./assets/screenshots/pointer.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                    </div>
+
+                    <template x-if="showBasicExample">
+                        <script async src="//jsfiddle.net/ProGM/2vnsb17x/8/embed/js,html,result/"></script>
+                    </template>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Handle Keyboard input</h3>
+                    <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+/* ... in your scene ... */
+create() {
+    this.spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
+    /* ... as event ... */
+    this.spaceKey.on('down', () => {
+        console.log('Space key pressed');
+    });
+}
+
+/* ... or as poll ... */
+update() {
+    if (this.spaceKey.isDown) {
+        console.log('Space key pressed');
+    }
+}
+                    </code></pre>
+                </div>
+                <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                    <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                        <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                        <img src="./assets/screenshots/input-keyboard.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                    </div>
+
+                    <template x-if="showBasicExample">
+                        <script async src="//jsfiddle.net/ProGM/ecdr3bsy/7/embed/js,html,result/"></script>
+                    </template>
+                </div>
+            </div>
+        </div>
+
+        <div id="audio" class="mb-12 break-inside-avoid">
+            <h2 class="text-2xl font-bold text-phaserViolet mb-4">Audio</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Play background music</h3>
+                    <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+/* ... in your scene ... */
+preload() {
+    this.load.audio('bgMusic', 'assets/bg-music.mp3');
+}
+
+create() {
+    this.bgMusic = this.sound.add('bgMusic', { loop: true });
+}
+                    </code></pre>
+                </div>
+                <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                    <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                        <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                        <img src="./assets/screenshots/pointer.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                    </div>
+
+                    <template x-if="showBasicExample">
+                        <script async src="//jsfiddle.net/ProGM/2vnsb17x/8/embed/js,html,result/"></script>
+                    </template>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Play SFX</h3>
+                    <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+/* ... in your scene ... */
+preload() {
+    this.load.audio('bark', 'assets/bark.mp3');
+}
+
+create() {
+    this.barkSFX = this.sound.add('bark');
+}
+
+/* ... play it ... */
+this.barkSFX.play();
+                    </code></pre>
+                </div>
+                <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                    <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                        <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                        <img src="./assets/screenshots/input-keyboard.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                    </div>
+
+                    <template x-if="showBasicExample">
+                        <script async src="//jsfiddle.net/ProGM/ecdr3bsy/7/embed/js,html,result/"></script>
+                    </template>
+                </div>
+            </div>
+        </div>
+
+        <div id="composition" class="mb-12 break-inside-avoid">
+            <h2 class="text-2xl font-bold text-phaserViolet mb-4">Composition</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Container nesting</h3>
+                    <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+create() {
+    this.logo = this.add.container(400, 300, [
+        this.add.image(0, 0, 'logo'),
+        this.add.text(0, 200, 'Hello, Phaser!')
+    ]);
+}
+
+update(time, delta) {
+    /* ... rotation, scaling and position are applied to all elements ... */
+    this.logo.setRotation(this.logo.rotation + delta / 100);
+}
+                    </code></pre>
+                </div>
+                <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                    <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                        <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                        <img src="./assets/screenshots/pointer.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                    </div>
+
+                    <template x-if="showBasicExample">
+                        <script async src="//jsfiddle.net/ProGM/2vnsb17x/8/embed/js,html,result/"></script>
+                    </template>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Group of items as classes</h3>
+                    <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+class MyComplexObject extends Phaser.GameObjects.Container {
+    constructor(scene) {
+        super(scene);
+        this.addMultiple([
+            scene.add.image(0, 0, 'logo'),
+            scene.add.text(0, 200, 'Hello, Phaser!')
+        ]);
+        scene.add.existing(this); // add the container to the scene
+    }
+}
+
+/* ... in your scene ... */
+create() {
+    this.baseLogo = new MyComplexObject(this);
+    this.baseLogo.setPosition(400, 300);
+
+    this.anotherLogo = new MyComplexObject(this);
+    this.anotherLogo.setPosition(200, 200);
+}
+                    </code></pre>
+                </div>
+                <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                    <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                        <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                        <img src="./assets/screenshots/input-keyboard.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                    </div>
+
+                    <template x-if="showBasicExample">
+                        <script async src="//jsfiddle.net/ProGM/ecdr3bsy/7/embed/js,html,result/"></script>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
