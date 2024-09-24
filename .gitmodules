@@ -1,0 +1,6 @@
+[submodule "boilerplates/typescript"]
+	path = boilerplates/typescript
+	url = https://github.com/phaserjs/template-esbuild-ts.git
+[submodule "boilerplates/javascript"]
+	path = boilerplates/javascript
+	url = https://github.com/phaserjs/template-esbuild.git

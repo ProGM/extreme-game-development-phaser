@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "build": "tailwindcss build src/styles.css -o public/styles.css",
+    "watch": "tailwindcss build src/styles.css -o public/styles.css --watch",
+    "dev": "concurrently \"npm run watch\" \"http-server public\""
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.13",
+    "http-server": "^14.1.1",
+    "concurrently": "^9.0.1"
+  }
+}
