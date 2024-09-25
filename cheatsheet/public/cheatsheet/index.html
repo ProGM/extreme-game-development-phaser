@@ -15,15 +15,17 @@
 
         <div class="sticky z-10 print:hidden top-0 bg-gray-100 py-4 mb-8">
             <div class="flex justify-center space-x-4">
-                <button @click="scrollTo('basics')" class="px-4 py-2 rounded bg-phaserBlue text-white hover:bg-phaserViolet transition">Basics</button>
-                <button @click="scrollTo('scenes')" class="px-4 py-2 rounded bg-phaserBlue text-white hover:bg-phaserViolet transition">Scenes</button>
-                <button @click="scrollTo('sprites')" class="px-4 py-2 rounded bg-phaserBlue text-white hover:bg-phaserViolet transition">Sprites</button>
-                <button @click="scrollTo('text')" class="px-4 py-2 rounded bg-phaserBlue text-white hover:bg-phaserViolet transition">Text</button>
-                <button @click="scrollTo('input')" class="px-4 py-2 rounded bg-phaserBlue text-white hover:bg-phaserViolet transition">Input</button>
-                <button @click="scrollTo('audio')" class="px-4 py-2 rounded bg-phaserBlue text-white hover:bg-phaserViolet transition">Audio</button>
-                <button @click="scrollTo('animation')" class="px-4 py-2 rounded bg-phaserBlue text-white hover:bg-phaserViolet transition">Animation</button>
-                <button @click="scrollTo('composition')" class="px-4 py-2 rounded bg-phaserBlue text-white hover:bg-phaserViolet transition">Composition</button>
-                <button @click="scrollTo('camera')" class="px-4 py-2 rounded bg-phaserBlue text-white hover:bg-phaserViolet transition">Camera</button>
+                <button @click="scrollTo('basics')" class="btn">Basics</button>
+                <button @click="scrollTo('scenes')" class="btn">Scenes</button>
+                <button @click="scrollTo('sprites')" class="btn">Sprites</button>
+                <button @click="scrollTo('text')" class="btn">Text</button>
+                <button @click="scrollTo('input')" class="btn">Input</button>
+                <button @click="scrollTo('physics')" class="btn">Physics</button>
+                <button @click="scrollTo('audio')" class="btn">Audio</button>
+                <button @click="scrollTo('animation')" class="btn">Animation</button>
+                <button @click="scrollTo('composition')" class="btn">Composition</button>
+                <button @click="scrollTo('camera')" class="btn">Camera</button>
+                <button @click="scrollTo('events')" class="btn">Events</button>
             </div>
         </div>
 
@@ -201,7 +203,6 @@ update(time, delta) {
             </div>
         </div>
 
-
         <div id="text" class="mb-12 break-inside-avoid">
             <h2 class="text-2xl font-bold text-phaserViolet mb-4">Text</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -264,10 +265,10 @@ create() {
                     <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
 /* ... in your scene ... */
 create() {
-    this.logo = this.add.sprite(400, 300, 'logo').setInteractive();
-    this.logo.on('pointerdown', () => {
-        console.log('Clicked on the logo');
-    });
+  this.logo = this.add.sprite(400, 300, 'logo').setInteractive();
+  this.logo.on('pointerdown', () => {
+      console.log('Clicked on the logo');
+  });
 }
                     </code></pre>
                 </div>
@@ -275,14 +276,15 @@ create() {
                     <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
                     <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
                         <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
-                        <img src="./assets/screenshots/pointer.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                        <img src="./assets/screenshots/input-sprite.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                     </div>
 
                     <template x-if="showBasicExample">
-                        <script async src="//jsfiddle.net/ProGM/2vnsb17x/8/embed/js,html,result/"></script>
+                        <script async src="//jsfiddle.net/ProGM/cnh0y5Lb/1/embed/js,html,result/"></script>
                     </template>
                 </div>
             </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="bg-white p-4 rounded shadow">
                     <h3 class="text-xl font-semibold text-phaserViolet mb-2">Handle Keyboard input</h3>
@@ -317,6 +319,112 @@ update() {
                     </template>
                 </div>
             </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="bg-white p-4 rounded shadow">
+                  <h3 class="text-xl font-semibold text-phaserViolet mb-2">Keyboard cursors</h3>
+                  <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+create() {
+  this.cursors = this.input.keyboard.createCursorKeys();
+}
+
+update() {
+  if (this.cursors.up.isDown) { /* ... */ }
+  if (this.cursors.down.isDown) { /* ... */ }
+  if (this.cursors.left.isDown) { /* ... */ }
+  if (this.cursors.right.isDown) { /* ... */ }
+}
+                  </code></pre>
+              </div>
+              <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                  <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                  <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                      <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                      <img src="./assets/screenshots/input-cursor.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                  </div>
+
+                  <template x-if="showBasicExample">
+                      <script async src="//jsfiddle.net/ProGM/n13c4br5/2/embed/js,html,result/"></script>
+                  </template>
+              </div>
+          </div>
+        </div>
+
+        <div id="physics" class="mb-12 break-inside-avoid">
+          <h2 class="text-2xl font-bold text-phaserViolet mb-4">Physics</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="bg-white p-4 rounded shadow">
+                  <h3 class="text-xl font-semibold text-phaserViolet mb-2">Arcade Physics</h3>
+                  <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+const config = {
+  ...
+  physics: { default: 'arcade' },
+};
+
+this.player = this.physics.add.sprite(400, 300, 'player');
+
+/* ... */
+this.player.body.setVelocityX(100);
+                  </code></pre>
+              </div>
+              <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                  <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                  <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                      <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                      <img src="./assets/screenshots/pointer.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                  </div>
+
+                  <template x-if="showBasicExample">
+                      <script async src="//jsfiddle.net/ProGM/2vnsb17x/8/embed/js,html,result/"></script>
+                  </template>
+              </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-4 rounded shadow">
+                <h3 class="text-xl font-semibold text-phaserViolet mb-2">Add physics to existing sprite</h3>
+                <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+this.player = this.add.sprite(400, 300, 'player');
+this.physics.add.existing(this.player);
+                </code></pre>
+            </div>
+            <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                    <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                    <img src="./assets/screenshots/pointer.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                </div>
+
+                <template x-if="showBasicExample">
+                    <script async src="//jsfiddle.net/ProGM/2vnsb17x/8/embed/js,html,result/"></script>
+                </template>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="bg-white p-4 rounded shadow">
+                  <h3 class="text-xl font-semibold text-phaserViolet mb-2">Collision Detection</h3>
+                  <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+this.player = this.physics.add.sprite(400, 300, 'player');
+this.ground = this.physics.add.staticImage(400, 568, 'ground');
+this.platform.setImmovable(true);
+this.platform.body.allowGravity = false;
+
+this.physics.add.collider(this.player, this.ground, () => {
+  console.log('Player hit the ground!');
+});
+                  </code></pre>
+              </div>
+              <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                  <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                  <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                      <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                      <img src="./assets/screenshots/pointer.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                  </div>
+
+                  <template x-if="showBasicExample">
+                      <script async src="//jsfiddle.net/ProGM/2vnsb17x/8/embed/js,html,result/"></script>
+                  </template>
+              </div>
+          </div>
         </div>
 
         <div id="audio" class="mb-12 break-inside-avoid">
@@ -376,6 +484,61 @@ this.barkSFX.play();
                     </template>
                 </div>
             </div>
+        </div>
+
+        <div id="animation" class="mb-12 break-inside-avoid">
+          <h2 class="text-2xl font-bold text-phaserViolet mb-4">Animation</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="bg-white p-4 rounded shadow">
+                  <h3 class="text-xl font-semibold text-phaserViolet mb-2">Basic Tween</h3>
+                  <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+const image = this.add.image(100, 100, 'logo');
+const tween = this.tweens.add({
+    targets: image,
+    duration: 3000,
+    /* Any property you want to animate */
+    x: 500,
+});
+                  </code></pre>
+              </div>
+              <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                  <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                  <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                      <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                      <img src="./assets/screenshots/pointer.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                  </div>
+
+                  <template x-if="showBasicExample">
+                      <script async src="//jsfiddle.net/ProGM/2vnsb17x/8/embed/js,html,result/"></script>
+                  </template>
+              </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="bg-white p-4 rounded shadow">
+                  <h3 class="text-xl font-semibold text-phaserViolet mb-2">Advanced Tweening</h3>
+                  <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+const image = this.add.image(100, 100, 'logo');
+const tween = this.tweens.add({
+    targets: image,
+    duration: 3000,
+    x: 500,
+    yoyo: true,
+    loop: 4
+});
+                  </code></pre>
+              </div>
+              <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                  <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                  <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                      <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                      <img src="./assets/screenshots/input-keyboard.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                  </div>
+
+                  <template x-if="showBasicExample">
+                      <script async src="//jsfiddle.net/ProGM/ecdr3bsy/7/embed/js,html,result/"></script>
+                  </template>
+              </div>
+          </div>
         </div>
 
         <div id="composition" class="mb-12 break-inside-avoid">
@@ -447,5 +610,128 @@ create() {
                 </div>
             </div>
         </div>
+
+        <div id="camera" class="mb-12 break-inside-avoid">
+          <h2 class="text-2xl font-bold text-phaserViolet mb-4">Camera</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="bg-white p-4 rounded shadow">
+                  <h3 class="text-xl font-semibold text-phaserViolet mb-2">Main Camera follow sprite</h3>
+                  <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+/* inside a scene */
+this.player = this.add.sprite(0, 0, 'player');
+/* Set an area where the camera can pan */
+this.cameras.main.setBounds(0, 0, 1920 * 2, 1080 * 2);
+/* Set the area of the world */
+this.physics.world.setBounds(0, 0, 1920 * 2, 1080 * 2);
+this.cameras.main.startFollow(this.player);
+                  </code></pre>
+              </div>
+              <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                  <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                  <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                      <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                      <img src="./assets/screenshots/pointer.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                  </div>
+
+                  <template x-if="showBasicExample">
+                      <script async src="//jsfiddle.net/ProGM/2vnsb17x/8/embed/js,html,result/"></script>
+                  </template>
+              </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="bg-white p-4 rounded shadow">
+                  <h3 class="text-xl font-semibold text-phaserViolet mb-2">Multiple cameras</h3>
+                  <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+/* inside a scene */
+this.cameras.add(0, 0, 400, 300);
+                  </code></pre>
+              </div>
+              <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                  <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                  <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                      <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                      <img src="./assets/screenshots/input-keyboard.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                  </div>
+
+                  <template x-if="showBasicExample">
+                      <script async src="//jsfiddle.net/ProGM/ecdr3bsy/7/embed/js,html,result/"></script>
+                  </template>
+              </div>
+          </div>
+      </div>
+
+      <div id="events" class="mb-12 break-inside-avoid">
+        <h2 class="text-2xl font-bold text-phaserViolet mb-4">Events</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-4 rounded shadow">
+                <h3 class="text-xl font-semibold text-phaserViolet mb-2">Built-in events handling</h3>
+                <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+this.events.on('preRender', () => { console.log('triggers before every screen update') })
+this.events.once('resume', () => { console.log('triggers only once') })
+this.events.off('preRender') // remove the event
+                </code></pre>
+            </div>
+            <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                    <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                    <img src="./assets/screenshots/pointer.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                </div>
+
+                <template x-if="showBasicExample">
+                    <script async src="//jsfiddle.net/ProGM/2vnsb17x/8/embed/js,html,result/"></script>
+                </template>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-4 rounded shadow">
+                <h3 class="text-xl font-semibold text-phaserViolet mb-2">Emit custom events</h3>
+                <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+/* ... scene events ... */
+this.events.on('playerDied', () => {});
+/* ... somewhere else ... */
+this.events.emit('playerDied');
+
+/* ... or game object events ... */
+this.player = this.add.sprite(400, 300, 'player');
+this.player.on('dead', () => {});
+/* ... somewhere else ... */
+this.events.emit('dead');
+                </code></pre>
+            </div>
+            <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                    <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                    <img src="./assets/screenshots/input-keyboard.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                </div>
+
+                <template x-if="showBasicExample">
+                    <script async src="//jsfiddle.net/ProGM/ecdr3bsy/7/embed/js,html,result/"></script>
+                </template>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-4 rounded shadow">
+                <h3 class="text-xl font-semibold text-phaserViolet mb-2">Custom event emitters</h3>
+                <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+const emitter = new Phaser.Events.EventEmitter();
+emitter.on('customEvent', () => {});
+emitter.emit('customEvent');
+                </code></pre>
+            </div>
+            <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                    <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                    <img src="./assets/screenshots/input-keyboard.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                </div>
+
+                <template x-if="showBasicExample">
+                    <script async src="//jsfiddle.net/ProGM/ecdr3bsy/7/embed/js,html,result/"></script>
+                </template>
+            </div>
+        </div>
     </div>
+  </div>
 </body>

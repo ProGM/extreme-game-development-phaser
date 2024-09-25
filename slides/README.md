@@ -74,6 +74,22 @@ function updateGame() {
 
 ---
 
+# Updating objects
+# =
+### Changing rotation, position, scale!
+
+---
+
+## Game as cartesian plane
+
+![bg right](./assets/cartesian.png)
+
+---
+
+# Who does all of this stuff?
+
+---
+
 # We need a game engine
 ### Let's use Phaser!
 
