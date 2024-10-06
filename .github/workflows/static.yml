@@ -29,16 +29,24 @@ jobs:
         with:
           node-version: '20' # You can specify the Node.js version you need
 
-      - name: Install dependencies
+      - name: Cheatsheet - Install dependencies
         run: npm i
         working-directory: ./cheatsheet
 
-      - name: Build project
+      - name: Cheatsheet - Build project
         run: npm run build
         working-directory: ./cheatsheet
 
+      - name: PONG - Install dependencies
+        run: npm i
+        working-directory: ./samples/pong
+
+      - name: PONG - Build project
+        run: npm run build
+        working-directory: ./samples/pong
+
       - name: Create output directory
-        run: cp -r ./public ./dist && cp ../slides/slides.pdf ./dist/slides.pdf
+        run: cp -r ./public ./dist && cp ../slides/slides.pdf ./dist/slides.pdf && cp -r ../samples/pong/dist ./dist/pong
         working-directory: ./cheatsheet
 
       - name: Setup Pages
