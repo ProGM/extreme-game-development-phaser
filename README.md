@@ -12,6 +12,6 @@ git clone --recurse-submodules https://github.com/ProGM/extreme-game-development
 
 * [Slides](slides/README.md)
 * [Cheatsheet](cheatsheet/README.md)
-* [JS Boilerplate](boilerplate/javascript/README.md)
-* [TS Boilerplate](boilerplate/typescript/README.md)
+* [JS Boilerplate](boilerplates/javascript/README.md)
+* [TS Boilerplate](boilerplates/typescript/README.md)
 * [Samples](samples/README.md)

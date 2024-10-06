@@ -267,9 +267,9 @@ this.physics.add.collider(this.player, this.ground, () => {
 ---
 # Useful links
 - This Repo
-https://github.com/ProGM/phaser-xp
+https://github.com/ProGM/extreme-game-development-phaser
 - Phaser Cheatsheet
-https://progm.github.io/phaser-xp/cheatsheet/
+https://progm.github.io/extreme-game-development-phaser/cheatsheet/
 - Phaser Debugger
 https://chromewebstore.google.com/detail/phaser-debugger/aigiefhkiaiihlploginlonehdafjljd
 - Phaser Examples
