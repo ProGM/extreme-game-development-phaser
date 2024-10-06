@@ -73,8 +73,8 @@ export class Game extends Scene {
   }
 
   update(_: number, delta: number) {
-    this.updatePlayer(this.player1, delta, this.arrows.up.isDown, this.arrows.down.isDown);
-    this.updatePlayer(this.player2, delta, this.ws.w.isDown, this.ws.s.isDown);
+    this.updatePlayer(this.player1, delta, this.ws.w.isDown, this.ws.s.isDown);
+    this.updatePlayer(this.player2, delta, this.arrows.up.isDown, this.arrows.down.isDown);
 
     if (!this.ballPaused) {
       this.updateBall(delta);
