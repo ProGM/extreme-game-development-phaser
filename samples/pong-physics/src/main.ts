@@ -19,6 +19,9 @@ const config: Types.Core.GameConfig = {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
+  physics: {
+    default: "arcade",
+  },
   scene: [Boot, Preloader, MainMenu, MainGame, GameOver],
 };
 
