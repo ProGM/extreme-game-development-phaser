@@ -198,7 +198,7 @@ update(time, delta) {
                     </div>
 
                     <template x-if="showBasicExample">
-                        <script async src="//jsfiddle.net/ProGM/4osbzky2/34/embed/js,html,result/"></script>
+                        <script async src="//jsfiddle.net/ProGM/4osbzky2/35/embed/js,html,result/"></script>
                     </template>
                 </div>
             </div>
@@ -281,7 +281,7 @@ create() {
                     </div>
 
                     <template x-if="showBasicExample">
-                        <script async src="//jsfiddle.net/ProGM/cnh0y5Lb/1/embed/js,html,result/"></script>
+                        <script async src="//jsfiddle.net/ProGM/mjLek0ub/embed/js,html,result/"></script>
                     </template>
                 </div>
             </div>
@@ -345,7 +345,7 @@ update() {
                   </div>
 
                   <template x-if="showBasicExample">
-                      <script async src="//jsfiddle.net/ProGM/n13c4br5/2/embed/js,html,result/"></script>
+                      <script async src="//jsfiddle.net/ProGM/vj0w7qy8/1/embed/js,html,result/"></script>
                   </template>
               </div>
           </div>
@@ -439,11 +439,11 @@ this.physics.add.collider(this.player, this.ground, () => {
                     <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
 /* ... in your scene ... */
 preload() {
-    this.load.audio('bgMusic', 'assets/bg-music.mp3');
+    this.load.audio('bgMusic', ['assets/bg-music.mp3', 'assets/bg-music.ogg']);
 }
 
 create() {
-    this.bgMusic = this.sound.add('bgMusic', { loop: true });
+    this.bgMusic = this.sound.add('bgMusic', { loop: true }).play();
 }
                     </code></pre>
                 </div>
@@ -451,11 +451,11 @@ create() {
                     <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
                     <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
                         <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
-                        <img src="./assets/screenshots/pointer.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                        <img src="./assets/screenshots/music.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                     </div>
 
                     <template x-if="showBasicExample">
-                        <script async src="//jsfiddle.net/ProGM/2vnsb17x/8/embed/js,html,result/"></script>
+                        <script async src="//jsfiddle.net/ProGM/ucv062fy/22/embed/js,html,result/"></script>
                     </template>
                 </div>
             </div>
@@ -465,7 +465,7 @@ create() {
                     <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
 /* ... in your scene ... */
 preload() {
-    this.load.audio('bark', 'assets/bark.mp3');
+    this.load.audio('bark', ['assets/bark.mp3']);
 }
 
 create() {
