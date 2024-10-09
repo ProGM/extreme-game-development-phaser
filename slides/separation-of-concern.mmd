@@ -1,0 +1,5 @@
+graph TD
+    A[Input] -->|Mutate| B[Game State]
+    B -->|Triggers| C[Events]
+    C -->|Refreshes| D[Presentation]
+    E[Update] -->|May mutate| B
