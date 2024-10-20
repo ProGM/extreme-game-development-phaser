@@ -8,10 +8,10 @@ Clone this repo and its submodules with:
 git clone --recurse-submodules https://github.com/ProGM/extreme-game-development-phaser.git
 ```
 
-## Table of contents
+## What's inside
 
 * [Slides](slides/README.md)
 * [Cheatsheet](cheatsheet/README.md)
-* [JS Boilerplate](boilerplates/javascript/README.md)
-* [TS Boilerplate](boilerplates/typescript/README.md)
+* [JS Boilerplate](https://github.com/phaserjs/template-esbuild)
+* [TS Boilerplate](https://github.com/phaserjs/template-esbuild-ts)
 * [Samples](samples/README.md)

@@ -480,11 +480,11 @@ this.barkSFX.play();
                     <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
                     <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
                         <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
-                        <img src="./assets/screenshots/input-keyboard.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                        <img src="./assets/screenshots/sfx.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                     </div>
 
                     <template x-if="showBasicExample">
-                        <script async src="//jsfiddle.net/ProGM/ecdr3bsy/7/embed/js,html,result/"></script>
+                        <script async src="//jsfiddle.net/ProGM/js71bhfr/5/embed/js,html,result/"></script>
                     </template>
                 </div>
             </div>
@@ -509,41 +509,75 @@ const tween = this.tweens.add({
                   <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
                   <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
                       <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
-                      <img src="./assets/screenshots/pointer.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                      <img src="./assets/screenshots/tween.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                   </div>
 
                   <template x-if="showBasicExample">
-                      <script async src="//jsfiddle.net/ProGM/2vnsb17x/8/embed/js,html,result/"></script>
+                      <script async src="//jsfiddle.net/ProGM/3xdkthfe/6/embed/js,html,result/"></script>
                   </template>
               </div>
           </div>
+
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="bg-white p-4 rounded shadow">
-                  <h3 class="text-xl font-semibold text-phaserViolet mb-2">Advanced Tweening</h3>
-                  <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+            <div class="bg-white p-4 rounded shadow">
+                <h3 class="text-xl font-semibold text-phaserViolet mb-2">Advanced Tweening</h3>
+                <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
 const image = this.add.image(100, 100, 'logo');
 const tween = this.tweens.add({
-    targets: image,
-    duration: 3000,
-    x: 500,
-    yoyo: true,
-    loop: 4
+  targets: image,
+  duration: 1000,
+  ease: Phaser.Math.Easing.Quadratic.In,
+  y: 550,
+  yoyo: true,
+  repeat: -1
 });
-                  </code></pre>
-              </div>
-              <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
-                  <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
-                  <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
-                      <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
-                      <img src="./assets/screenshots/input-keyboard.png" alt="Phaser.js game window" class="w-full h-auto rounded">
-                  </div>
-
-                  <template x-if="showBasicExample">
-                      <script async src="//jsfiddle.net/ProGM/ecdr3bsy/7/embed/js,html,result/"></script>
-                  </template>
-              </div>
-          </div>
+                </code></pre>
+            </div>
+            <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                    <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                    <img src="./assets/screenshots/advanced-tweening.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                </div>
+                <template x-if="showBasicExample">
+                    <script async src="//jsfiddle.net/ProGM/str0m8jq/embed/js,html,result/"></script>
+                </template>
+            </div>
         </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-4 rounded shadow">
+                <h3 class="text-xl font-semibold text-phaserViolet mb-2">Frame by Frame</h3>
+                <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
+/* Configure an animation with key 'some_animation' */
+this.anims.create({
+    key: 'some_animation',
+    frames: [
+        { key: 'frame1' },
+        { key: 'frame2' },
+        { key: 'frame3' }
+    ],
+    frameRate: 8,
+    repeat: -1
+});
+
+/* Create a sprite and run it */
+this.add.sprite(100, 100, 'frame1').play('some_animation');
+                </code></pre>
+            </div>
+            <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
+                <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
+                <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
+                    <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
+                    <img src="./assets/screenshots/frame-by-frame.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                </div>
+
+                <template x-if="showBasicExample">
+                    <script async src="//jsfiddle.net/ProGM/bs5Lvwdp/21/embed/js,html,result/"></script>
+                </template>
+            </div>
+        </div>
+      </div>
 
         <div id="composition" class="mb-12 break-inside-avoid">
             <h2 class="text-2xl font-bold text-phaserViolet mb-4">Composition</h2>
@@ -554,7 +588,7 @@ const tween = this.tweens.add({
 create() {
     this.logo = this.add.container(400, 300, [
         this.add.image(0, 0, 'logo'),
-        this.add.text(0, 200, 'Hello, Phaser!')
+        this.add.text(0, 40, 'Hello, Phaser!').setOrigin(0.5)
     ]);
 }
 
@@ -568,11 +602,11 @@ update(time, delta) {
                     <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
                     <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
                         <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
-                        <img src="./assets/screenshots/pointer.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                        <img src="./assets/screenshots/composition.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                     </div>
 
                     <template x-if="showBasicExample">
-                        <script async src="//jsfiddle.net/ProGM/2vnsb17x/8/embed/js,html,result/"></script>
+                        <script async src="//jsfiddle.net/ProGM/rtm9f3Ls/13/embed/js,html,result/"></script>
                     </template>
                 </div>
             </div>
@@ -605,11 +639,11 @@ create() {
                     <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
                     <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
                         <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
-                        <img src="./assets/screenshots/input-keyboard.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                        <img src="./assets/screenshots/complex-objects.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                     </div>
 
                     <template x-if="showBasicExample">
-                        <script async src="//jsfiddle.net/ProGM/ecdr3bsy/7/embed/js,html,result/"></script>
+                        <script async src="//jsfiddle.net/ProGM/La1vyjqe/12/embed/js,html,result/"></script>
                     </template>
                 </div>
             </div>
@@ -634,11 +668,11 @@ this.cameras.main.startFollow(this.player);
                   <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
                   <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
                       <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
-                      <img src="./assets/screenshots/pointer.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                      <img src="./assets/screenshots/camera.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                   </div>
 
                   <template x-if="showBasicExample">
-                      <script async src="//jsfiddle.net/ProGM/2vnsb17x/8/embed/js,html,result/"></script>
+                      <script async src="//jsfiddle.net/ProGM/4gu5h90f/42/embed/js,html,result/"></script>
                   </template>
               </div>
           </div>
@@ -654,11 +688,11 @@ this.cameras.add(0, 0, 400, 300);
                   <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
                   <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
                       <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
-                      <img src="./assets/screenshots/input-keyboard.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                      <img src="./assets/screenshots/multi-camera.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                   </div>
 
                   <template x-if="showBasicExample">
-                      <script async src="//jsfiddle.net/ProGM/ecdr3bsy/7/embed/js,html,result/"></script>
+                      <script async src="//jsfiddle.net/ProGM/u15z2gej/embed/js,html,result/"></script>
                   </template>
               </div>
           </div>
@@ -670,20 +704,20 @@ this.cameras.add(0, 0, 400, 300);
             <div class="bg-white p-4 rounded shadow">
                 <h3 class="text-xl font-semibold text-phaserViolet mb-2">Built-in events handling</h3>
                 <pre class="bg-gray-100 p-2 rounded"><code class="language-js">
-this.events.on('preRender', () => { console.log('triggers before every screen update') })
-this.events.once('resume', () => { console.log('triggers only once') })
-this.events.off('preRender') // remove the event
+this.events.once('prerender', () => { console.log('triggers before the first screen update') })
+this.events.on('resume', () => { console.log('triggers when the game exits from pause') })
+this.events.off('resume') // remove the event
                 </code></pre>
             </div>
             <div x-data="{ showBasicExample: false }" class="bg-white p-4 rounded shadow">
                 <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
                 <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
                     <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
-                    <img src="./assets/screenshots/pointer.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                    <img src="./assets/screenshots/events.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                 </div>
 
                 <template x-if="showBasicExample">
-                    <script async src="//jsfiddle.net/ProGM/2vnsb17x/8/embed/js,html,result/"></script>
+                    <script async src="//jsfiddle.net/ProGM/pytwomav/31/embed/js,html,result/"></script>
                 </template>
             </div>
         </div>
@@ -707,11 +741,11 @@ this.events.emit('dead');
                 <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
                 <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
                     <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
-                    <img src="./assets/screenshots/input-keyboard.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                    <img src="./assets/screenshots/event-dead.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                 </div>
 
                 <template x-if="showBasicExample">
-                    <script async src="//jsfiddle.net/ProGM/ecdr3bsy/7/embed/js,html,result/"></script>
+                    <script async src="//jsfiddle.net/ProGM/b7q3hsdg/7/embed/js,html,result/"></script>
                 </template>
             </div>
         </div>
@@ -728,11 +762,11 @@ emitter.emit('customEvent');
                 <h3 class="text-xl font-semibold text-phaserViolet mb-2">Result</h3>
                 <div @click="showBasicExample = true" x-show="!showBasicExample" class="relative cursor-pointer group">
                     <button class="absolute p-2 bg-phaserViolet text-white rounded hidden group-hover:block">Run</button>
-                    <img src="./assets/screenshots/input-keyboard.png" alt="Phaser.js game window" class="w-full h-auto rounded">
+                    <img src="./assets/screenshots/custom-events.png" alt="Phaser.js game window" class="w-full h-auto rounded">
                 </div>
 
                 <template x-if="showBasicExample">
-                    <script async src="//jsfiddle.net/ProGM/ecdr3bsy/7/embed/js,html,result/"></script>
+                    <script async src="//jsfiddle.net/ProGM/62Ld5onz/8/embed/js,html,result/"></script>
                 </template>
             </div>
         </div>
