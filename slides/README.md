@@ -4,19 +4,41 @@ author: ProGM
 marp: true
 ---
 
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+section {
+  background-image: url(./assets/DoodlePattern.png);
+  background-size: 40%;
+  font-family: 'Noto Sans';
+}
+p, li {
+}
+h1, h2, h3, li, p {
+  text-shadow:
+   -10px -10px 0 #fff,
+    10px -10px 0 #fff,
+    -10px 10px 0 #fff,
+     0px 10px 0 #fff,
+    -0px -10px 0 #fff,
+    10px   0px 0 #fff,
+    -10px 0px 0 #fff;
+
+}
+</style>
+
 # (eXtreme) Game Development with Phaser
 
 ---
 
-# Let's start with the basics
+## Let's start with the basics
 
 ---
 
-# ❓ gamedev... anyone? ❓
+## ❓ gamedev... anyone? ❓
 
 ---
 
-# Game loop
+## Game loop
 
 ```js
 while (true) {
@@ -27,7 +49,7 @@ while (true) {
 
 ---
 
-# Game loop #2
+## Game loop #2
 
 ```js
 while (true) {
@@ -40,7 +62,7 @@ while (true) {
 
 ---
 
-# Game loop #3
+## Game loop #3
 
 ```js
 function updateGame() {
@@ -56,7 +78,7 @@ requestAnimationFrame(updateGame);
 
 ---
 
-# Updating objects
+### Updating objects
 # =
 ### Changing rotation, position, scale!
 
@@ -73,7 +95,7 @@ requestAnimationFrame(updateGame);
 
 ---
 
-# 0.0016666666666666667 seconds
+## 0.0016666666666666667 seconds
 
 ---
 
@@ -87,7 +109,7 @@ requestAnimationFrame(updateGame);
 
 ---
 
-# Delta time in Game Loop
+## Delta time in Game Loop
 
 ```js
 let lastTime = Date.now();
@@ -105,7 +127,7 @@ function updateGame() {
 
 ---
 
-# Frame rate independent movement
+## Frame rate independent movement
 
 ```js
 function update(deltaTime) {
@@ -133,7 +155,7 @@ function update(deltaTime) {
 
 ---
 
-# Why Phaser?
+## Why Phaser?
 
 * Easy to learn
 * Open source
@@ -141,18 +163,19 @@ function update(deltaTime) {
 * It's fun!
 
 ---
-# Basic concepts
+## Basic concepts
 
 * Scenes
 * Game Objects & Factory
 * Loader
 * Physics
-<!-- * Composition -->
 
 ---
 ## Scenes
 
 A scene is a container for all the game objects. It can be a menu, a level, a game over screen, etc.
+
+---
 
 #### Example:
 **Super Mario Bros** has a scene for the title screen, a scene for each level, and a scene for the game over screen.
@@ -291,7 +314,7 @@ this.physics.add.collider(this.player, this.ground, () => {
 ```
 
 ---
-# Workshop time!
+## Workshop time!
 ### Let's make PONG!
 ---
 ## PONG Rules
@@ -305,7 +328,7 @@ this.physics.add.collider(this.player, this.ground, () => {
 - First player to reach 5 points wins
 
 ---
-# Scan me
+## Scan me
 
 ![](./assets/qrcode.png)
 
@@ -313,7 +336,7 @@ https://progm.github.io/extreme-game-development-phaser/
 
 
 ---
-# Useful links
+## Useful links
 - Phaser 3 Docs
 https://newdocs.phaser.io/docs/3.85.2
 - Phaser Debugger
@@ -331,11 +354,11 @@ https://labs.phaser.io/
 
 ---
 
-Every article you may find about this topic are between 10 and 20 years old.
-- https://wiki.c2.com/?MostGamesProgrammersDontGrokObjectOrientation
-- https://web.archive.org/web/20040311205648/http://www.mistaril.com/about/post_mortem_ssm.php
-- https://web.archive.org/web/20111110112241/http://www.gamasutra.com/resource_guide/20030714/demachy_01.shtml
-- https://web.archive.org/web/20031006100908/http://www.extremegamedev.org/cgi-bin/wiki.pl
+### Most articles are 10~20 years old
+- [Most Games Programmers Dont Grok Object Orientation](https://wiki.c2.com/?MostGamesProgrammersDontGrokObjectOrientation)
+- [Post Mortem: Space Station Manager](https://web.archive.org/web/20040311205648/http://www.mistaril.com/about/post_mortem_ssm.php)
+- [Extreme Game Development: Right on Time, Every Time](https://web.archive.org/web/20111110112241/http://www.gamasutra.com/resource_guide/20030714/demachy_01.shtml)
+- [ExtremeGameDev](https://web.archive.org/web/20031006100908/http://www.extremegamedev.org/cgi-bin/wiki.pl)
 
 ---
 
@@ -362,7 +385,7 @@ __(70-80% of the team)__
 
 ---
 
-# Separation of concerns
+## Separation of concerns
 * Game state
 * Presentation
 * Input handling
