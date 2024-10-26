@@ -305,8 +305,8 @@ this.player.body.setVelocityX(100);
 ```js
 this.player = this.physics.add.sprite(400, 300, 'player');
 this.ground = this.physics.add.staticImage(400, 568, 'ground');
-this.platform.setImmovable(true);
-this.platform.body.allowGravity = false;
+this.ground.setImmovable(true);
+this.ground.body.allowGravity = false;
 
 this.physics.add.collider(this.player, this.ground, () => {
   console.log('Player hit the ground!');
